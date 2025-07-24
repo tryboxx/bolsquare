@@ -26,7 +26,7 @@ This project uses [Tuist](https://tuist.io) for managing Xcode project configura
 ### Generate the project
 
 ```bash
-tuist fetch
+tuist install
 tuist generate
 ```
 

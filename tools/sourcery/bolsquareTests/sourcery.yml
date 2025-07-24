@@ -1,0 +1,26 @@
+configurations:
+  - sources:
+      - ${PROJECT_DIR}/bolsquare
+      - ${PROJECT_DIR}/bolsquareTests/generated
+    forceParse:
+      - canBeParsed
+    templates:
+      - ../templates/AutoMockable.stencil
+    output:
+      ${PROJECT_DIR}/bolsquareTests/generated/AutoMockable.canBeParsed.swift
+    args:
+      testimports: |
+        @testable import bolsquare
+  - sources:
+      - ${PROJECT_DIR}/bolsquare
+      - ${PROJECT_DIR}/bolsquareTests/generated
+    forceParse:
+      - canBeParsed
+    templates:
+      - ../templates/Lenses.stencil
+    output:
+      ${PROJECT_DIR}/bolsquareTests/generated
+    args:
+      testimports: |
+        import UIKit
+        @testable import bolsquare

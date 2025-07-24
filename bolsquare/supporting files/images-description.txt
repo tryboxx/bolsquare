@@ -1,0 +1,36 @@
+This file contains information about some images which can cause confusiom.
+That's why we've described properties of these iamge which can help to separate them from other images.
+
+[controls/actions]
+    plusIcon (16x16)
+    plusIconActive (16x16)
+
+[controls/navigation]
+    arrowDown (24x24)
+    arrowBackDarkGray24x24
+    arrowBackLightGray40x40
+    arrowForward24x24
+    backCircleButton
+    backCircleButtonActive
+
+[controls/close]
+    closeXWhite24x24
+    closeXLightGray19x19NoMargins (no margins)
+    closeXGray24x24 (#B2B2A9)
+    closeXLightGray24x24 (#DFDFDA) - (now with margins -- replaced closeVerySmallGray)
+    closeXGray32x32
+
+[controls/information]
+    informationIcon12x12 (informationIcon)
+    informationIconActive12x12 (informationIconActive)
+    informationIcon16x16
+    informationIcon16x16Active (active version for 16x16 prepared)
+
+[common/warningIcon]
+    warningIcon20x20 (statusCardIconError - has small margins)
+    warningIcon24x24 (paymentsWarning)
+
+// other
+activateProKangaroo (327x160)
+hippoLogo (138x52 green)
+claimsHandshake (50.41x28.81)

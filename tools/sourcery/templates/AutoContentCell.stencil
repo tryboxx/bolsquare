@@ -1,0 +1,32 @@
+import UIKit
+
+struct ContentCells {
+    static func register(in tableView: UITableView) {
+        {% for class in types.classes where class.name != "GenericContentCell" and (class.based.AutoContentCell or class.inherits.ContentCell) %}
+            {{ class.name|replace:"View","Cell" }}.register(in: tableView)
+        {% endfor %}
+    }
+}
+
+{% for class in types.classes where class.based.AutoContentCell %}
+class {{ class.name|replace:"View","Cell" }}: GenericContentCell<{{ class.name|replace:"View","Definition" }}, {{ class.name }}> {}
+{% endfor %}
+
+extension ContentDataSourceImpl {
+    func cell(for item: ContentItemDefinition, tableView: UITableView, indexPath: IndexPath) -> UITableViewCell? {
+        switch item {
+        {% for class in types.classes where class.based.AutoContentCell %}
+            case let item as {{ class.name|replace:"View","Definition" }}: return prepare(cellType: {{ class.name|replace:"View","Cell" }}.self, definition: item, tableView: tableView, indexPath: indexPath)
+        {% endfor %}
+        {% for class in types.all where class.based.ContentItemDefinition %}
+        {% set cellTypeName %}{{ class.name|replace:"Definition","Cell" }}{% endset %}
+        {% if type[cellTypeName].inherits.ContentCell and type[cellTypeName].isGeneric == false %}
+            case let item as {{ class.name }}: return prepare(cellType: {{ cellTypeName }}.self, definition: item, tableView: tableView, indexPath: indexPath)
+        {% endif %}
+        {% endfor %}
+        default:
+        assertionFailure("FATAL ERROR!! Did not found cell for \(String(describing: item)) definition")
+        return nil
+        }
+    }
+}

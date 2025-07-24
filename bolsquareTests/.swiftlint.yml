@@ -1,0 +1,44 @@
+disabled_rules:
+ - force_unwrapping
+ - force_cast
+ - force_try
+ - empty_string
+ - large_tuple
+
+opt_in_rules:
+ - overridden_super_call
+ - balanced_xctest_lifecycle
+ - empty_xctest_method
+ - nimble_operator
+ - prefer_nimble
+ - xct_specific_matcher
+
+overridden_super_call:
+    excluded:
+      - 'setUp()'
+      - 'tearDown()'
+
+identifier_name:
+  min_length: 3
+  max_length: 100
+  excluded:
+    - id
+    - by
+    - x
+    - y
+    - w
+    - h
+    - n
+    - no
+    - to
+    - _1
+    - _2
+    - _3
+    - _4
+    - _5
+    - VM
+    - vm
+    - VC
+    - vc
+  allowed_symbols:
+    - _

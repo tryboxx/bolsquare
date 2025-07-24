@@ -1,0 +1,19 @@
+configurations:
+  - sources:
+      - ${PROJECT_DIR}/bolsquare
+    templates:
+      - ../templates/AutoEquatable.stencil
+    output:
+      ${PROJECT_DIR}/bolsquare/generated/AutoEquatable.swift
+  - sources:
+      - ${PROJECT_DIR}/bolsquare
+    templates:
+      - ../templates/AutoFactory.stencil
+    output:
+      ${PROJECT_DIR}/bolsquare/generated/Factory.canBeParsed.swift
+  - sources:
+      - ${PROJECT_DIR}/bolsquare
+    templates:
+      - ../templates/AutoContentCell.stencil
+    output:
+      ${PROJECT_DIR}/bolsquare/generated/ContentCells.canBeParsed.swift

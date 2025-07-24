@@ -1,0 +1,102 @@
+disabled_rules:
+ - line_length
+ - file_length
+ - function_body_length
+ - type_body_length
+ - blanket_disable_command
+
+opt_in_rules:
+ - closure_end_indentation
+ - closure_spacing
+ - collection_alignment
+ - comma_inheritance
+ - contains_over_filter_count
+ - contains_over_filter_is_empty
+ - contains_over_first_not_nil
+ - contains_over_range_nil_comparison
+ - discarded_notification_center_observer
+ - discouraged_assert
+ - empty_collection_literal
+ - empty_count
+ - empty_string
+ - enum_case_associated_values_count
+ - explicit_init
+ - extension_access_modifier
+ - fallthrough
+ - fatal_error_message
+ - file_name_no_space
+ - first_where
+ - flatmap_over_map_reduce
+ - force_unwrapping
+ - identical_operands
+ - implicit_return
+ - joined_default_parameter
+ - last_where
+ - legacy_multiple
+ - literal_expression_end_indentation
+ - modifier_order
+ - multiline_arguments
+ - multiline_function_chains
+ - multiline_literal_brackets
+ - multiline_parameters
+ - operator_usage_whitespace
+ - optional_enum_case_matching
+ - overridden_super_call
+ - override_in_extension
+ - prefer_self_type_over_type_of_self
+ - prefer_zero_over_explicit_init
+ - prohibited_super_call
+ - redundant_nil_coalescing
+ - redundant_type_annotation
+ - return_value_from_void_function
+ - self_binding
+ - shorthand_optional_binding
+ - sorted_first_last
+ - static_operator
+ - toggle_bool
+ - unneeded_parentheses_in_closure_argument
+ - unowned_variable_capture
+ - vertical_parameter_alignment_on_call
+
+excluded:
+ - bolsquare/generated
+ - bolsquareTests/generated
+ - deriveddata
+ - SourcePackages
+ - packages
+ - Tuist
+ - Project.swift
+ - Mint
+
+cyclomatic_complexity:
+  warning: 17
+ 
+identifier_name:
+  min_length: 3
+  max_length: 100
+  excluded:
+    - id
+    - by
+    - x
+    - y
+    - w
+    - h
+    - n
+    - no
+    - to
+    - me
+    - ui
+    - _1
+    - _2
+    - _3
+    - _4
+    - _5
+  allowed_symbols:
+    - _
+
+type_name:
+  max_length: 100
+
+overridden_super_call:
+    included:
+      - 'configure(withDefinition definition: Definition)'

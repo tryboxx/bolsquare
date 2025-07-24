@@ -1,0 +1,61 @@
+{% macro fillArguments initializer %}{% typed initializer as Method %}{% for param in initializer.parameters %}{{ param.argumentLabel }}: {{ param.typeName }}{{ ', ' if not forloop.last }}{% endfor %}{% endmacro %}
+{% macro fillArgumentsImpl initializer %}{% typed initializer as Method %}{% for param in initializer.parameters %}{{ param.argumentLabel }}: {{ param.argumentLabel }}{{ ', ' if not forloop.last }}{% endfor %}{% endmacro %}
+
+{% macro fillStoredVariables type %}{% typed type as Type %}{% for param in type.storedVariables %}{{ param.name }}: {{ param.typeName }}{{ ', ' if not forloop.last }}{% endfor %}{% endmacro %}
+{% macro fillStoredVariablesImpl type %}{% typed type as Type %}{% for param in type.storedVariables %}{{ param.name }}: {{ param.name }}{{ ', ' if not forloop.last }}{% endfor %}{% endmacro %}
+
+{% macro fillStoredVariablesWithoutOptionals type %}{% typed type as Type %}{% for param in type.storedVariables|!optional %}{{ param.name }}: {{ param.typeName }}{{ ', ' if not forloop.last }}{% endfor %}{% endmacro %}
+{% macro fillStoredVariablesWithoutOptionalsImpl type %}{% typed type as Type %}{% for param in type.storedVariables|!optional %}{{ param.name }}: {{ param.name }}{{ ', ' if not forloop.last }}{% endfor %}{% endmacro %}
+
+@MainActor
+protocol Factory: AutoMockable {
+{% for protocol in types.protocols where protocol.implements.AutoFactory or protocol.name|hasSuffix:"ViewModel" and protocol.name != "ViewModel" or protocol.name|hasSuffix:"Coordinator" and protocol.name != "Coordinator" %}
+{#  #}{% set protocolName %}{{ protocol.name }}{% endset %}
+{#  #}{% for type in types.implementing[protocolName] %}
+{#      #}{% for initializer in type.initializers where initializer.parameters[0].argumentLabel != "coder" %}
+{#      #}    func {{ type.name|lowerFirstLetter|replace:"Impl","" }}({% call fillArguments initializer %}) -> {{ protocolName }}
+{#      #}{% endfor %}
+{#      #}{% if type.initializers.count == 0 %}
+{#          #}{% if type.kind == "struct" and type.storedVariables.count > 0 %}
+{#          #}    func {{ type.name|lowerFirstLetter|replace:"Impl","" }}({% call fillStoredVariablesWithoutOptionals type %}) -> {{ protocolName }}
+{#              #}{% map type.storedVariables into optionals using var %}{{ var.name }} {% endmap %}
+{#              #}{% if optionals.count > 0 %}
+{#              #}    func {{ type.name|lowerFirstLetter|replace:"Impl","" }}({% call fillStoredVariables type %}) -> {{ protocolName }}
+{#              #}{% endif %}
+{#          #}{% else %}
+{#          #}    func {{ type.name|lowerFirstLetter|replace:"Impl","" }}() -> {{ protocolName }}
+{#          #}{% endif %}
+{#      #}{% endif %}
+{#  #}{% endfor %}
+{% endfor %}
+}
+
+struct FactoryImpl: Factory {
+{% for protocol in types.protocols where protocol.implements.AutoFactory or protocol.name|hasSuffix:"ViewModel" and protocol.name != "ViewModel" or protocol.name|hasSuffix:"Coordinator" and protocol.name != "Coordinator" %}
+{#  #}{% set protocolName %}{{ protocol.name }}{% endset %}
+{#  #}{% for type in types.implementing[protocolName] %}
+{#      #}{% for initializer in type.initializers where initializer.parameters[0].argumentLabel != "coder" %}
+{#      #}    func {{ type.name|lowerFirstLetter|replace:"Impl","" }}({% call fillArguments initializer %}) -> {{ protocolName }} {
+{#      #}        return {{ type.name }}({% call fillArgumentsImpl initializer %})
+{#      #}    }
+{#      #}{% endfor %}
+{#      #}{% if type.initializers.count == 0 %}
+{#          #}{% if type.kind == "struct" and type.storedVariables.count > 0 %}
+{#          #}    func {{ type.name|lowerFirstLetter|replace:"Impl","" }}({% call fillStoredVariablesWithoutOptionals type %}) -> {{ protocolName }} {
+{#          #}        return {{ type.name }}({% call fillStoredVariablesWithoutOptionalsImpl type %})
+{#          #}    }
+{#              #}{% map type.storedVariables into optionals using var %}{{ var.name }} {% endmap %}
+{#              #}{% if optionals.count > 0 %}
+{#              #}    func {{ type.name|lowerFirstLetter|replace:"Impl","" }}({% call fillStoredVariables type %}) -> {{ protocolName }} {
+{#              #}        return {{ type.name }}({% call fillStoredVariablesImpl type %})
+{#              #}    }
+{#              #}{% endif %}
+{#          #}{% else %}
+{#          #}    func {{ type.name|lowerFirstLetter|replace:"Impl","" }}() -> {{ protocolName }} {
+{#          #}        return {{ type.name }}()
+{#          #}    }
+{#          #}{% endif %}
+{#      #}{% endif %}
+{#  #}{% endfor %}
+{% endfor %}
+}

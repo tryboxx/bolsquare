@@ -1,0 +1,18 @@
+/*
+  Localizable.strings
+ BolSquare
+
+  Created by Christopher Kolodziej on 23/07/2025.
+*/
+
+"Common.Done"="Done";
+"Common.Loading"="Loading";
+
+"Errors.FailedLoadRepositories."="Failed to load repositories.";
+
+"Main.RepositoryListTitle" = "Repositories";
+
+"RepositoryList.Header.Title" = "Repositories";
+"RepositoryList.Header.Subtitle" = "Items count: %s";
+"RepositoryList.Owner.Name" = "Owner: %s";
+"RepositoryList.EmptyState.Title" = "Nothing here yet. Please check it out later.";

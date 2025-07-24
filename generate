@@ -1,0 +1,16 @@
+DIR="$( cd "$( dirname "$0" )" && pwd )"
+echo "Switch to directory: ${DIR}"
+cd $DIR
+
+export SRCROOT=$DIR
+export PROJECT_DIR=$DIR
+
+sh scripts/CodeGeneration/install-tuist.sh
+sh scripts/CodeGeneration/install-packages.sh
+
+tuist install
+tuist cache --external-only
+
+sh scripts/CodeGeneration/generate.sh
+
+tuist generate

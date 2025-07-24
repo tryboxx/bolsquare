@@ -1,0 +1,8 @@
+{
+  "enabledManagers": ["mint"],
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "local>Bolsquare/renovate-config"
+  ],
+  "dependencyDashboardAutoclose": true
+}

@@ -1,0 +1,21 @@
+strings:
+  - inputs: bolsquare/resources/Localizable.strings
+    filter: .+\.strings$
+    outputs:
+      templateName: structured-swift5
+      output: bolsquare/generated/strings.swift
+      params:
+          enumName: L10n
+xcassets:
+  - inputs: bolsquare/supporting files/Images.xcassets
+    outputs:
+      templateName: swift5
+      params:
+        enumName: Images
+      output: bolsquare/generated/images.swift
+  - inputs: bolsquare/supporting files/Colors.xcassets
+    outputs:
+      templateName: swift5
+      params:
+        enumName: Colors
+      output: bolsquare/generated/colors.swift

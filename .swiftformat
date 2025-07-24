@@ -1,0 +1,122 @@
+# file options
+--swiftversion 5.7
+--exclude **/generated
+--exclude deriveddata
+--exclude SourcePackages
+--exclude packages
+--exclude Tuist
+--exclude Project.swift
+--exclude Mint
+
+# disabled rules
+--disable blankLinesAroundMark
+--disable blankLinesAtStartOfScope
+--disable consecutiveSpaces
+--disable consistentSwitchCaseSpacing
+--disable enumNamespaces
+--disable headerFileName
+--disable indent
+--disable preferForLoop
+--disable preferKeyPath
+--disable redundantRawValues
+--disable redundantInternal
+--disable redundantStaticSelf
+--disable unusedArguments
+--disable sortImports
+--disable sortTypealiases
+--disable wrap
+--disable wrapMultilineStatementBraces
+
+# enabled rules
+#--disable andOperator
+#--disable anyObjectProtocol
+#--disable assertionFailures
+#--disable blankLinesAtEndOfScope
+#--disable blankLinesBetweenScopes
+#--disable braces
+#--disable consecutiveBlankLines
+#--disable duplicateImports
+#--disable elseOnSameLine
+#--disable emptyBraces
+#--disable enumNamespaces
+#--disable extensionAccessControl
+#--disable fileHeader
+#--disable genericExtensions
+#--disable hoistPatternLet
+#--disable initCoderUnavailable
+#--disable leadingDelimiters
+#--disable linebreakAtEndOfFile
+#--disable linebreaks
+#--disable modifierOrder
+#--disable numberFormatting
+#--disable opaqueGenericParameters
+#--disable redundantBackticks
+#--disable redundantBreak
+#--disable redundantClosure
+#--disable redundantExtensionACL
+#--disable redundantFileprivate
+#--disable redundantGet
+#--disable redundantInit
+#--disable redundantLet
+#--disable redundantLetError
+#--disable redundantNilInit
+#--disable redundantObjc
+#--disable redundantOptionalBinding
+#--disable redundantParens
+#--disable redundantPattern
+#--disable redundantReturn
+#--disable redundantSelf
+#--disable redundantType
+#--disable redundantVoidReturnType
+#--disable semicolons
+#--disable sortDeclarations
+#--disable spaceAroundBraces
+#--disable spaceAroundBrackets
+#--disable spaceAroundComments
+#--disable spaceAroundGenerics
+#--disable spaceAroundOperators
+#--disable spaceAroundParens
+#--disable spaceInsideBraces
+#--disable spaceInsideBrackets
+#--disable spaceInsideComments
+#--disable spaceInsideGenerics
+#--disable spaceInsideParens
+#--disable strongOutlets
+#--disable strongifiedSelf
+#--disable todos
+#--disable trailingClosures
+#--disable trailingCommas
+#--disable trailingSpace
+#--disable typeSugar
+#--disable void
+#--disable wrapArguments
+#--disable wrapAttributes
+#--disable wrapSingleLineComments
+#--disable yodaConditions
+
+# disabled opt-in rules
+#--enable acronyms
+#--enable blankLinesBetweenImports
+#--enable blockComments
+#--enable docComments
+#--enable markTypes
+#--enable organizeDeclarations
+#--enable preferDouble
+#--enable sortSwitchCases
+#--enable wrapConditionalBodies
+#--enable wrapSwitchCases
+
+# enabled opt-in rules
+--enable blankLineAfterImports
+--enable isEmpty
+--enable wrapEnumCases
+
+# rules config
+--commas inline
+--patternlet inline
+--redundanttype inferred
+--self init-only
+--someAny false
+--wraparguments before-first
+--wrapparameters before-first
+--wrapcollections before-first

@@ -1,0 +1,9 @@
+DIR="$( cd "$( dirname "$0" )" && pwd )"
+echo "Switch to directory: ${DIR}"
+cd $DIR
+
+swiftlint --fix
+swiftformat .
+swiftlint --fix
+
+sleep 2
